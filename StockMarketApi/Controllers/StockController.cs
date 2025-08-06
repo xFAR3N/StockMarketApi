@@ -28,7 +28,7 @@ namespace StockMarketApi.Controllers
             var stocksDto = stocks.Select(s => s.ToStockDto());
             return Ok(stocksDto);
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var stock = await _stockRepo.GetByIdAsync(id);
@@ -48,7 +48,7 @@ namespace StockMarketApi.Controllers
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> UpdateStock([FromRoute] int id, [FromBody] UpdateStockRequestDto stockDto)
         {
             var stock = await _stockRepo.UpdateAsync(id, stockDto);
@@ -60,7 +60,7 @@ namespace StockMarketApi.Controllers
             return Ok(stock.ToStockDto());
         }
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> DeleteStock([FromRoute] int id)
         {
             var stock = await _stockRepo.DeleteAsync(id);
