@@ -10,5 +10,6 @@ namespace StockMarketApi.Interfaces
         Task<Stock> CreateAsync(Stock stockMode);
         Task<Stock> UpdateAsync(int id, UpdateStockRequestDto stockDto);
         Task<Stock?> DeleteAsync(int id);
+        Task<bool> StockExist(int id);
     }
 }
